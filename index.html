@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Who's in space?</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div id="call-to-action" class="call-to-action"></div>
+
+  <div class="container">
+    <h1>Who's in space?</h1>
+
+    <div><p id="error" class="error">Hello, I am an error</p></div>
+
+    <h2>Astronauts</h2>
+    <p>There are <span id="count">4</span> people in space right now:</p>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Craft</th>
+        </tr>
+      </thead>
+
+      <tbody id="astronauts">
+        <tr>
+          <td>Mae Jemison</td>
+          <td>ISS</td>
+        </tr>
+        <tr>
+          <td>Sunita Williams</td>
+          <td>ISS</td>
+        </tr>
+        <tr>
+          <td>Christina Koch</td>
+          <td>ISS</td>
+        </tr>
+        <tr>
+          <td>Jessica Meir</td>
+          <td>ISS</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <h2>ISS</h2>
+
+    <div id="map" class="map">
+      Enable JavaScript to see a map showing the ISS position in real time.
+    </div>
+
+    <div id="clock" class="defaultClock">00:00:00</div>
+
+  </div>
+
+  <footer>
+    <p><a href="https://www.nasa.gov/image-feature/new-full-hemisphere-views-of-earth-at-night">Image Credit</a>: NASA Earth Observatory image by Joshua Stevens, using Suomi NPP VIIRS data from Miguel Román, NASA's Goddard Space Flight Center.</p>
+
+    <p>ISS icon by <a href="https://science.nasa.gov/toolkits/spacecraft-icons">Science NASA toolkits</a>.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+  <script src="js/app.js"></script>
+  <script>
+  ;(function() {
+    window.addEventListener('load', function() {
+      let client = new Client(),
+          map = new Map('map'),
+          options = {
+        countID: 'count',
+        astronautsID: 'astronauts',
+        errorID: 'error',
+        clockID: 'clock',
+        defaultClockClass: 'defaultClock',
+        alertClockClass: 'alertClock',
+      };
+
+      (new Clock(new UI(client, map, options))).start();
+    });
+  })();
+  </script>
+
+</body>
+
+</html>
